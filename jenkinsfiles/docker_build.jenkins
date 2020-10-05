@@ -6,7 +6,6 @@ pipeline {
     agent {
         label 'master'  
         }
-    trigers  { pollSCM('* * * * *') }
     options {
         buildDiscarder(logRotator(numToKeepStr: '10', artifactNumToKeepStr: '10'))
         timestamps()
@@ -16,7 +15,7 @@ pipeline {
             steps {
                 echo " ============== start building image =================="
                 dir ('jojo/kek') {
-                	sh 'docker build -t toolbox: latest . '
+                	sh 'docker build . '
                 }
             }
         }
